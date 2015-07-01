@@ -1,0 +1,116 @@
+* {
+  margin: 0px auto;
+  text-align: center;
+  font-family: Arial;
+  font-size: 20px;
+  color: #fff;
+}
+
+body {
+  background-image: url("/src/background.jpg"); 
+  overflow: hidden; 
+}
+
+h1 {
+  padding: 20px;
+  font-size: 36px;
+  background: rgba(255, 255, 255, .2);
+}
+
+footer {
+  padding: 10px;
+  width: 100%;
+  position: absolute;
+  bottom : 0;
+  background: rgba(255, 255, 255, .5);
+}
+
+#standardContainer {
+  width: 50%;
+}
+
+#bars {
+  margin: 10px auto;
+  width: 50%;
+}
+
+#bars td {
+  width: 25%;
+}
+
+#levelbar {
+  padding: 2px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#enemybar {
+  padding: 2px;
+  border: 2px solid white;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#notification {
+  margin: 5px auto;
+  padding: 5px;
+  width: 50%;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  text-align: center;
+}
+
+#menu {
+  margin: 150px auto;
+  font-size: 16px;
+}
+
+#start, #options, #help {
+  margin: 5px auto;
+  padding: 2px;
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 5px;
+}
+
+#start:hover, #options:hover, #help:hover {
+  border-color: #aaa;
+  color: #aaa;
+}
+
+#gamesection {
+  margin: 10px auto;
+}
+
+#board {
+  border-spacing: 0px;
+  background: rgba(255, 255, 255, .3);
+}
+
+#board td {
+  width: 8px;
+  height: 8px;
+}
+
+#copyright {
+  font-size: 12px;
+  text-align: left;
+  color: #000;
+}
+
+.player {
+  background: blue;
+}
+
+.cannon {
+  background: yellow;
+}
+
+.part {
+  background: red;
+}
+
+.projectile {
+  background: white;
+}

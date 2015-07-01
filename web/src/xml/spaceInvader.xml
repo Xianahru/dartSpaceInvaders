@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spaceinvader>
+	<levels>
+		<level stage='1'>
+		<spawnpoints>
+			<spawnpoint row='2' col='5' type='1'/>
+			<spawnpoint row='2' col='25' type='1'/>
+		</spawnpoints>
+	</level>
+	</levels>
+	<ships>
+		<ship type='1' hitpoints='3'>
+			<coordinate row='0' col='0' cannon='0'/>
+			<coordinate row='-1' col='-1' cannon='0'/>
+			<coordinate row='-1' col='1' cannon='0'/>
+		</ship>
+	</ships>
+</spaceinvader>

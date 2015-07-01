@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Space Invaders Dart</title>
+   
+   <link rel="stylesheet" href="src/css/space.css" type="text/css">
+  </head>
+  
+  <body>   
+    <h1>Space Invaders Dart</h1>
+    <div id="standardContainer">
+      
+      <table id="bars" style="display: none">
+        <tr>
+          <td><div id="levelbar"></div></td>
+          <td><div id="enemybar"></div></td>
+        </tr>
+      </table>
+      
+      <div id="notification" style="display: none"></div>
+      
+      <div id="menu">
+        <p id="start">Start</p>
+        <p id="options">Optionen</p>
+        <p id="help">Hilfe</p>
+      </div>
+      
+      <div id="gamesection" style="display: none">
+        <table id="board">
+        </table>
+      </div>
+    </div>
+    
+    <footer>
+      <p id="copyright">Eine Projektarbeit von Viktor Gies, Marius Rosenbaum und Axel Wallow</p>
+    </footer>
+    <script type="application/dart" src="space.dart"></script>
+    <!-- for this next line to work, your pubspec.yaml file must have a dependency on 'browser' -->
+    <script src="packages/browser/dart.js"></script>
+  </body>
+</html>
