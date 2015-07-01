@@ -5,16 +5,14 @@ part of SpaceInvader;
  * Besteht aus einer Liste von Koordinatenpaaren relativ zum jeweiligen Schiffsmittelpunkt [0/0]
  * Wird genutzt um [EnemyShip] auf einem [SpawnPoint] zu spawnen
  */
-class ShipType{
-  
+class ShipType {
   List<Map<String, int>> _parts = [];
   int _hitpoints;
-  
+
   ShipType(this._parts, this._hitpoints);
 
   List<Map<String, int>> get parts => _parts;
   int get hitpoints => this._hitpoints;
-  
 }
 
 /**
@@ -28,23 +26,22 @@ class ShipType{
  * Über [_rng] wird die nächste Bewegung festgelegt 
  */
 abstract class Ship {
-  
   Random _rng = new Random();
-  
+
   SpaceInvaderModel _model;
-  
+
   List<Map<String, int>> _parts = [];
   List<Map<String, int>> _cannons = [];
-  
+
   Map<String, int> _leftMost;
   Map<String, int> _rightMost;
-  
+
   int _hitpoints;
-  
+
   /**
    * Konstruktor
    */
-  Ship(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints){
+  Ship(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints) {
     this._model = model;
     this._parts = parts;
     this._hitpoints = hitpoints;
@@ -55,16 +52,17 @@ abstract class Ship {
   List<Map<String, int>> get parts => _parts;
 
   int get hitpoints => this._hitpoints;
-    
+
   /**
    * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
    * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
    */
-  void detectCollision(){
+  void detectCollision() {
     List<Projectile> projectiles = this._model.projectiles.toList();
-    for(Map<String, int> part in this._parts){
-      for(Projectile prj in projectiles){
-        if((part['row'] == prj._coordinate['row']) && (part['col'] == prj._coordinate['col'])){
+    for (Map<String, int> part in this._parts) {
+      for (Projectile prj in projectiles) {
+        if ((part['row'] == prj._coordinate['row']) &&
+            (part['col'] == prj._coordinate['col'])) {
           print('Hit by enemy! Reducing HP by 1');
           this.reduceHitpointsBy(1);
           this._model.removeProjectile(prj);
@@ -72,20 +70,20 @@ abstract class Ship {
       }
     }
   }
-  
+
   /**
    * Nachdem die Koordinaten des Schiffes eingetragen sind, werden [_leftMost] und [_rightMost]
    * ausgerechnet. In Klassen, die von [Ship] erben, werden möglicherweise noch [_bottomMost] und 
    * [_topMost] ausgerechnet. Ggf kann auch [_cannons] ausgerechnet werden
    */
   setup();
-  
+
   reduceHitpointsBy(int damage);
-  
+
   /**
    * Stringrepräsentation eines Schiffes
    */
-  String toString(){
+  String toString() {
     return _parts.toString();
   }
 }
@@ -96,87 +94,87 @@ abstract class Ship {
  * Besitzt neben [_leftMost] und [_rightMost] auch noch [_bottomMost] um festzustellen, ob das Spiel verloren wurde
  */
 class EnemyShip extends Ship {
-  
   Map<String, int> _bottomMost;
-  
+
   EnemyShip(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints) : super(model, parts, hitpoints);
-  
-  void move(){ 
-    switch(determineDirection()){
+
+  void move() {
+    switch (determineDirection()) {
       case 'down':
-        if(this._bottomMost['row'] == gamesize-1) { _model.setGameOver(); break; }
-        else {
-          for(Map coor in _parts){
+        if (this._bottomMost['row'] == gamesize - 1) {
+          this._model.setGameOver();
+          break;
+        } else {
+          for (Map coor in _parts) {
             coor['row'] += 1;
-            if(coor['row'] > this._bottomMost['row']) this._bottomMost = coor; 
+            if (coor['row'] > this._bottomMost['row']) this._bottomMost = coor;
           }
         }
         print("moved down");
         break;
       case 'left':
-        if(this._leftMost['col'] == 0) break;
+        if (this._leftMost['col'] == 0) break;
         else {
-          for(Map coor in _parts){
+          for (Map coor in _parts) {
             coor['col'] -= 1;
-            if(coor['col'] < _leftMost['col']) this._leftMost = coor; 
+            if (coor['col'] < _leftMost['col']) this._leftMost = coor;
           }
-        print("moved left");
+          print("moved left");
         }
         break;
       case 'right':
-        if(this._rightMost['col'] == gamesize-1) break;
-        else { 
-          for(Map coor in _parts){
+        if (this._rightMost['col'] == gamesize - 1) break;
+        else {
+          for (Map coor in _parts) {
             coor['col'] += 1;
-            if(coor['col'] > this._rightMost['col']) this._rightMost = coor; 
+            if (coor['col'] > this._rightMost['col']) this._rightMost = coor;
           }
-        print("moved right");
+          print("moved right");
         }
         break;
     }
-    
-    this.detectCollision();
 
+    this.detectCollision();
   }
-  
-  determineDirection(){
+
+  determineDirection() {
     int dir = _rng.nextInt(12);
-    
-    if(dir<=5)                 return 'down';
-    else if(dir>=6 && dir<=8)  return 'left';
-    else if(dir>=9 && dir<=11) return 'right';
+
+    if (dir <= 5) return 'down';
+    else if (dir >= 6 && dir <= 8) return 'left';
+    else if (dir >= 9 && dir <= 11) return 'right';
   }
-  
+
   shoot() {
-    for(Map<String, int> coor in _cannons) {
+    for (Map<String, int> coor in _cannons) {
       int chance = _rng.nextInt(10);
-      if(chance == 1)  this._model.spawnProjectile({'row': (coor['row']+1), 'col': coor['col'], 'dir': 1});
+      if (chance == 1) this._model.spawnProjectile(
+          {'row': (coor['row'] + 1), 'col': coor['col'], 'dir': 1});
     }
   }
-  
-  reduceHitpointsBy(int damage){
+
+  reduceHitpointsBy(int damage) {
     this._hitpoints -= damage;
-    
-    if(this._hitpoints <= 0) {
+
+    if (this._hitpoints <= 0) {
       this._model.removeEnemy(this);
       this._model.addScore(this._hitpoints);
       print('Ship is destroyed!');
     }
   }
-  
-  setup(){
+
+  setup() {
     this._leftMost = _parts[0];
     this._rightMost = _parts[0];
     this._bottomMost = _parts[0];
-    
-    for(Map coor in _parts){
-      if(coor['row'] > this._bottomMost['row']) this._bottomMost = coor; 
-      if(coor['col'] < this._leftMost['col']) this._leftMost = coor; 
-      if(coor['col'] > this._rightMost['col']) this._rightMost = coor;
-      if(coor['cannon'] == 1) this._cannons.add(coor);
+
+    for (Map coor in _parts) {
+      if (coor['row'] > this._bottomMost['row']) this._bottomMost = coor;
+      if (coor['col'] < this._leftMost['col']) this._leftMost = coor;
+      if (coor['col'] > this._rightMost['col']) this._rightMost = coor;
+      if (coor['cannon'] == 1) this._cannons.add(coor);
     }
   }
-  
 }
 
 /**
@@ -185,79 +183,72 @@ class EnemyShip extends Ship {
  * Bewegt sich nur bei Nutzereingabe
  */
 class PlayerShip extends Ship {
-    
-  PlayerShip(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints) : super(model, parts, hitpoints);
+  PlayerShip(
+      SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints)
+      : super(model, parts, hitpoints);
   /**
    * Mthode um das [PlayerShip] zu bewegen.
    * Vor jeder Bewegung wird auf Kollision geprüft.
    */
-  void move(String direction){
-    switch(direction){
+  void move(String direction) {
+    switch (direction) {
       case 'left':
-      
-        if(this._leftMost['col'] == 0) { print('Cant move left anymore');
-        
-        break; }
-        else {
-          for(Map coor in parts){
+        if (this._leftMost['col'] == 0) {
+          print('Cant move left anymore');
+          break;
+        } else {
+          for (Map coor in parts) {
             coor['col'] -= 1;
-            
-            if(coor['col'] < this._leftMost['col']) this._leftMost = coor;
+            if (coor['col'] < this._leftMost['col']) this._leftMost = coor;
           }
-          
-        print('moved player left');
+          print('moved player left');
         }
         break;
       case 'right':
-      
-        if(this._rightMost['col'] == gamesize-1) { print('Cant move right anymore');
-        
-        break; }
-        else {
-          for(Map coor in parts){
+        if (this._rightMost['col'] == gamesize - 1) {
+          print('Cant move right anymore');
+          break;
+        } else {
+          for (Map coor in parts) {
             coor['col'] += 1;
-           
-            if(coor['col'] > this._rightMost['col']) this._rightMost = coor; 
+            if (coor['col'] > this._rightMost['col']) this._rightMost = coor;
           }
-          
-        print('moved player right');
+          print('moved player right');
         }
         break;
     }
-    detectCollision();
+    this.detectCollision();
   }
-  
+
   /**
    * Jede Kanone in [_cannons] schießt eine Kugel mit Richtung -1 ab
    * (Das [Projectile] fliegt nach oben)
    */
-  shoot(){
-    for(Map<String, int> coor in _cannons){
-      this._model.spawnProjectile({'row': (coor['row']-1), 'col': coor['col'], 'dir': -1});
+  shoot() {
+    for (Map<String, int> coor in _cannons) {
+      this._model.spawnProjectile(
+          {'row': (coor['row'] - 1), 'col': coor['col'], 'dir': -1});
     }
   }
-  
-  reduceHitpointsBy(int damage){
-     this._hitpoints -= damage;
-     
-     if(this._hitpoints <= 0) {
-       this._hitpoints = 0;
-       _model.setGameOver();
-       print('PlayerShip is destroyed!');
-     }
-   }
-  
-  setup(){
-    
+
+  reduceHitpointsBy(int damage) {
+    this._hitpoints -= damage;
+
+    if (this._hitpoints <= 0) {
+      this._hitpoints = 0;
+      _model.setGameOver();
+      print('PlayerShip is destroyed!');
+    }
+  }
+
+  setup() {
     this._leftMost = _parts[0];
     this._rightMost = _parts[0];
-    
-    for(Map coor in _parts){
-      if(coor['col'] < _leftMost['col']) this._leftMost = coor; 
-      if(coor['col'] > _rightMost['col']) this._rightMost = coor;
-      if(coor['cannon'] == 1) this._cannons.add(coor);
+
+    for (Map coor in _parts) {
+      if (coor['col'] < _leftMost['col']) this._leftMost = coor;
+      if (coor['col'] > _rightMost['col']) this._rightMost = coor;
+      if (coor['cannon'] == 1) this._cannons.add(coor);
     }
   }
-  
-  
 }
