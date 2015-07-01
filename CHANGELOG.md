@@ -3,3 +3,11 @@
 ## 0.0.1
 
 - Initial version, created by Stagehand
+
+## 0.0.2
+
+- Added projectile movement and collision with playership
+- Added projectile movement and collision with other projectiles
+- Added a GameOver-Screen
+
+- Changed the probabilty of an enemy cannon shooting

@@ -10,7 +10,7 @@
 	</levels>
 	<ships>
 		<ship type='1' hitpoints='3'>
-			<coordinate row='0' col='0' cannon='0'/>
+			<coordinate row='0' col='0' cannon='1'/>
 			<coordinate row='-1' col='-1' cannon='0'/>
 			<coordinate row='-1' col='1' cannon='0'/>
 		</ship>

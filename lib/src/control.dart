@@ -2,6 +2,7 @@ part of SpaceInvader;
 
 const shipMovement = const Duration(milliseconds: 1000);
 const projectileMovement = const Duration(milliseconds: 100);
+const shootingFrequency = const Duration(milliseconds: 500);
 
 class SpaceInvaderControl {
   
@@ -10,12 +11,14 @@ class SpaceInvaderControl {
   
   Timer shipTrigger;
   Timer projectileTrigger;
+  Timer shootingTrigger;
   
   SpaceInvaderControl() {
    
     view.start.onClick.listen((html.MouseEvent event) async {
       if(shipTrigger != null) {shipTrigger.cancel();}
       if(projectileTrigger != null) {projectileTrigger.cancel();}
+      if(shootingTrigger != null) {shootingTrigger.cancel();}
       await model.setup();
       model.loadLevel(1);
       model.setRunning(true);
@@ -24,9 +27,13 @@ class SpaceInvaderControl {
       shipTrigger = new Timer.periodic(shipMovement, (Timer t) {
         model.moveEnemies();
         view.update(model);
-        });
+      });
       projectileTrigger = new Timer.periodic(projectileMovement, (Timer t) {
         model.moveProjectiles();
+        view.update(model);
+      });
+      shootingTrigger = new Timer.periodic(shootingFrequency, (Timer t) {
+        model.enemyShoot();
         view.update(model);
       });
     });

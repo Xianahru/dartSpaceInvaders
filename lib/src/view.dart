@@ -12,6 +12,9 @@ class SpaceInvaderView {
   final notification = html.querySelector('#notification');
   final gamesection = html.querySelector('#gamesection');
   final board = html.querySelector('#board');
+  final status = html.querySelector('#status');
+  final healthpoints = html.querySelector('#healthpoints');
+  final score = html.querySelector('#score');
   
   /**
    * Aktualisiert das HUD, sowie das Spielfeld
@@ -22,15 +25,19 @@ class SpaceInvaderView {
       menu.style.display = 'none';
       bars.style.display = 'block';
       gamesection.style.display = 'block';
+      status.style.display = 'block';
     }
     
     if(model.getGameOver() == true) {
+      
       notification.style.display = 'block';
       notification.innerHtml = "Game Over! Enemies took over your ship!";
     }
     
     levelbar.innerHtml = "Level ${model.getLevel()}";
     enemybar.innerHtml = "${model.getLeftShips()} enemies left";
+    healthpoints.innerHtml = "Health: ${model.playerHitpoints()}";
+    score.innerHtml = "Points: ${model.getScore()}";
     
     updateField(model);
   }

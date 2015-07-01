@@ -20,42 +20,30 @@ class SpaceInvaderModel {
   bool _gameOver = false;
   bool _running = false;
   
-  bool isRunning() {
-    return this._running;
-  }
-
-  bool getGameOver(){
-    return this._gameOver;
-  }
-  
-  bool stageClear(){
-    return this._enemies.length == 0;
-  }
-  
-  setRunning(bool run) {
-    this._running = run;
-  }
-
-  setLevel(int lvl) {
-    this._currentLevel = lvl;
-  }
-  
-  getLevel() {
-    return this._currentLevel;
-  }
-  
-  getLeftShips() {
-    return _enemies.length;
-  }
-  
-  setGameOver(){
-    this._gameOver = true;
-    print('GAME OVER BOOOOYS');
-    print('You\'ve reached level ${this._currentLevel} with a score of ${this._score}');
-  }
   
   List<Projectile> get projectiles => this._projectiles;
   List<EnemyShip> get enemies => this._enemies;
+  
+  bool isRunning() { return this._running; }
+
+  bool getGameOver(){ return this._gameOver; }
+  
+  bool stageClear(){ return this._enemies.length == 0; }
+  
+  setRunning(bool run) { this._running = run; }
+
+  setLevel(int lvl) { this._currentLevel = lvl; }
+  
+  getLevel() { return this._currentLevel; }
+  
+  getLeftShips() { return _enemies.length; }
+
+  setGameOver(){
+    this._gameOver = true;
+    this._running = false;
+    print('GAME OVER BOOOOYS');
+    print('You\'ve reached level ${this._currentLevel} with a score of ${this._score}');
+  }
   
   /**
    * Entfernt das angegebene [Projectile] aus der Liste der [Projectile] [_projectiles]
@@ -74,9 +62,9 @@ class SpaceInvaderModel {
   /**
    * Erhöhrt die Punktzahl um den angegebenen Betrag
    */
-  addScore(int i){
-    this._score += i;
-  }
+  addScore(int i){ this._score += i; }
+  
+  getScore() { return this._score; }
 
   /**
    * ACTHUNG
@@ -85,7 +73,6 @@ class SpaceInvaderModel {
    */
   setup() async {
     String document = await html.HttpRequest.getString('src/xml/spaceInvader.xml');
-   // document = await new File('web/src/xml/spaceInvader.xml').readAsString();
     _doc = parse(document);
     lvls = _doc.findAllElements('level');
     ships = _doc.findAllElements('ship');
@@ -159,14 +146,18 @@ class SpaceInvaderModel {
   }
   
   spawnProjectile(Map<String, int> coor){
-    _projectiles.add(new Projectile(coor, this));
+    if(_running) _projectiles.add(new Projectile(coor, this));
   }
   
   /**
    * [_player] schießt alle seinen Kanonen
    */
   playerShoot(){
-    _player.shoot();
+    if(_running) _player.shoot();
+  }
+  
+  enemyShoot() {
+    if(_running) _enemies.toList().forEach((p) => p.shoot());
   }
   
   /**
@@ -175,7 +166,7 @@ class SpaceInvaderModel {
    * Ggf kann auch noch ['up'] und ['down'] implementiert werden
    */
   movePlayer(String direction){
-    _player.move(direction);
+    if(_running) _player.move(direction);
   }
   
   /**
@@ -183,9 +174,7 @@ class SpaceInvaderModel {
    * Für eine genauere Beschreibung siehe [EnemyShip.move]
    */
   moveEnemies(){
-    for(EnemyShip enemy in _enemies.toList()){
-      if(!this._gameOver) enemy.move();
-    }
+    if(_running) _enemies.toList().forEach((enemy) => enemy.move());
   }
   
   /**
@@ -194,6 +183,10 @@ class SpaceInvaderModel {
    */
   moveProjectiles(){
     _projectiles.toList().forEach((p) => p.move());
+  }
+  
+  playerHitpoints() {
+    return _player._hitpoints;
   }
   
   /**
