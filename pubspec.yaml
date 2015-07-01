@@ -1,0 +1,9 @@
+name: SpaceInvader
+version: 0.0.1
+description: A sample command-line application.
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  browser: any
+  start: any
+  xml: any
