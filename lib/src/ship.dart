@@ -36,6 +36,7 @@ abstract class Ship {
   Map<String, int> _leftMost;
   Map<String, int> _rightMost;
 
+  int _baseHitpoints;
   int _hitpoints;
 
   /**
@@ -45,6 +46,7 @@ abstract class Ship {
     this._model = model;
     this._parts = parts;
     this._hitpoints = hitpoints;
+    this._baseHitpoints = hitpoints;
     setup();
     print('Spawned ship on $this');
   }
@@ -158,7 +160,7 @@ class EnemyShip extends Ship {
 
     if (this._hitpoints <= 0) {
       this._model.removeEnemy(this);
-      this._model.addScore(this._hitpoints);
+      this._model.addScore(this._baseHitpoints * 10);
       print('Ship is destroyed!');
     }
   }
