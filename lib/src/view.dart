@@ -4,7 +4,7 @@ class SpaceInvaderView {
   
   final menu = html.querySelector('#menu');
   final start = html.querySelector('#start');
-//final options = html.querySelector('#options');
+  final back = html.querySelector('#back');
   final help = html.querySelector('#help');
   final next = html.querySelector('#next');
   final bars = html.querySelector('#bars');
@@ -110,6 +110,9 @@ class SpaceInvaderView {
     board.innerHtml = table;
   }
   
+  /**
+   * Erzeugt die Lebenselemente in der Healthbar
+   */
   void buildHealth(int life) {
     String out = "";
     out += "<tr>";
@@ -125,6 +128,9 @@ class SpaceInvaderView {
     healthpoints.innerHtml = out;
   }
   
+  /**
+   * Aktualisiert die Farbe der Lebenselemente
+   */
   String checkForColor(int life) {
     var color = "";
     switch(life) {
@@ -144,15 +150,32 @@ class SpaceInvaderView {
     return color;
   }
   
+  /**
+   * Zeigt das how-to-play
+   */
   void showInstructions() {
     menu.style.display = 'none';
     instructions.style.display = 'block';
   }
   
+  /**
+   * Zeigt das menü
+   */
+  void hideInstructions() {
+    menu.style.display = 'block';
+    instructions.style.display = 'none';
+  }
+  
+  /**
+   * Zeigt das Overlay
+   */
   void showOverlay() {
     overlay.style.display = 'block';
   }
   
+  /**
+   * Versteckt das Overlay
+   */
   void hideOverlay() {
       overlay.style.display = 'none';
   }

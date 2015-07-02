@@ -49,6 +49,10 @@ class SpaceInvaderControl {
           view.update(model);
      });
     
+    view.back.onClick.listen((html.MouseEvent event) {
+              view.hideInstructions();
+         });
+    
     html.window.onKeyDown.listen((html.KeyboardEvent event) {
       if(!model.isRunning() || model.getGameOver() || model.stageClear()) return;
       switch(event.keyCode) {

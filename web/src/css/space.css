@@ -75,7 +75,7 @@ footer {
   font-size: 16px;
 }
 
-#start, #options, #help, #next {
+#start, #options, #help, #next, #back {
   margin: 5px auto;
   padding: 2px;
   width: 100px;
@@ -83,7 +83,7 @@ footer {
   border-radius: 5px;
 }
 
-#start:hover, #options:hover, #help:hover, #next:hover {
+#start:hover, #options:hover, #help:hover, #next:hover, #back:hover {
   border-color: #aaa;
   color: #aaa;
 }
@@ -100,7 +100,7 @@ footer {
   top: 150px;
   left: 0px;
   right: 0px;
-  background: green;
+  background: rgba(0, 153, 0, .3);
 }
 
 #board {
