@@ -149,7 +149,7 @@ class EnemyShip extends Ship {
     for (Map<String, int> coor in _cannons) {
       int chance = _rng.nextInt(10);
       if (chance == 1) this._model.spawnProjectile(
-          {'row': (coor['row'] + 1), 'col': coor['col'], 'dir': 1});
+          {'row': (coor['row'] + 1), 'col': coor['col'], 'dir': 1}, false);
     }
   }
 
@@ -227,7 +227,7 @@ class PlayerShip extends Ship {
   shoot() {
     for (Map<String, int> coor in _cannons) {
       this._model.spawnProjectile(
-          {'row': (coor['row'] - 1), 'col': coor['col'], 'dir': -1});
+          {'row': (coor['row'] - 1), 'col': coor['col'], 'dir': -1}, true);
     }
   }
 

@@ -59,6 +59,7 @@ class Projectile {
         _model.removeProjectile(this);
       }
     }
+    
     List<Projectile> projectiles = this._model.projectiles.toList();
     for (Projectile prj in projectiles) {
       if (this != prj) {

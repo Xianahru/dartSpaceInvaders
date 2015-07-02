@@ -5,6 +5,7 @@ class SpaceInvaderModel {
   Map<int, ShipType> _enemyTypes = new Map<int, ShipType>();
   List<EnemyShip> _enemies = [];
   List<Projectile> _projectiles = [];
+  List<Projectile> _playerProjectiles = [];
   PlayerShip _player;
   SpawnPoint _playerSpawn = new SpawnPoint.player({'row': 29, 'col': 15});
   int _score = 0;
@@ -21,6 +22,7 @@ class SpaceInvaderModel {
   bool _running = false;
   
   List<Projectile> get projectiles => this._projectiles;
+  List<Projectile> get playerProjectiles => this._playerProjectiles;
   List<EnemyShip> get enemies => this._enemies;
   
   bool isRunning() { return this._running; }
@@ -51,6 +53,7 @@ class SpaceInvaderModel {
    * Entfernt das angegebene [Projectile] aus der Liste der [Projectile] [_projectiles]
    */
   removeProjectile(Projectile proj){
+    if(this._playerProjectiles.contains(proj)) this._playerProjectiles.remove(proj);
     this._projectiles.remove(proj);
   }
   
@@ -132,6 +135,7 @@ class SpaceInvaderModel {
     _enemies.clear();
     _player = null;
     _projectiles.clear();
+    _playerProjectiles.clear();
     setLevel(stage);
         
     Level level = _levels[stage];
@@ -149,8 +153,17 @@ class SpaceInvaderModel {
     
   }
   
-  spawnProjectile(Map<String, int> coor){
-    if(_running) _projectiles.add(new Projectile(coor, this));
+  /**
+   * Spawnt ein [Projectile]
+   * Unterscheidet dabei ein vom Spieler generiertes [Projectile] und das eines [EnemyShip]
+   */
+  spawnProjectile(Map<String, int> coor, bool player){
+    Projectile dummy = new Projectile(coor, this);
+    if(_running && player && this._playerProjectiles.length < 3) {
+      _projectiles.add(dummy);
+      _playerProjectiles.add(dummy);
+    }
+    else if (_running && !player) _projectiles.add(dummy);
   }
   
   /**
@@ -214,7 +227,11 @@ class SpaceInvaderModel {
     }
     
     for(Projectile proj in _projectiles){
-      field[proj.coordinate['row']][proj.coordinate['col']] = 'projectile';
+      field[proj.coordinate['row']][proj.coordinate['col']] = 'enemyProjectile';
+    }
+    
+    for(Projectile proj in _playerProjectiles){
+      field[proj.coordinate['row']][proj.coordinate['col']] = 'playerProjectile';
     }
     
     return field;

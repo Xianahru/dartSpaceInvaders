@@ -71,8 +71,11 @@ class SpaceInvaderView {
             case 'part':
               point.classes.add('part');
               break;
-            case 'projectile':
-              point.classes.add('projectile');
+            case 'enemyProjectile':
+              point.classes.add('enemyProjectile');
+              break;
+            case 'playerProjectile':
+              point.classes.add('playerProjectile');
               break;
             case 'cannonPlayer':
               point.classes.add('cannonPlayer');
