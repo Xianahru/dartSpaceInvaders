@@ -38,8 +38,19 @@ class SpaceInvaderControl {
       });
     });
     
+    view.help.onClick.listen((html.MouseEvent event) {
+      view.showInstructions();
+    });
+    
+    view.next.onClick.listen((html.MouseEvent event) {
+      model.setLevel(model.getLevel()+1);
+      model.loadLevel(model.getLevel());
+      view.hideOverlay();
+      view.update(model);
+    });
+    
     html.window.onKeyDown.listen((html.KeyboardEvent event) {
-      if(model.isRunning() == false && model.getGameOver() == false) return;
+      if(!model.isRunning() || model.getGameOver() || model.stageClear()) return;
       switch(event.keyCode) {
         case html.KeyCode.LEFT:
           model.movePlayer('left');

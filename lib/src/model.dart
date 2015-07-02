@@ -20,7 +20,6 @@ class SpaceInvaderModel {
   bool _gameOver = false;
   bool _running = false;
   
-  
   List<Projectile> get projectiles => this._projectiles;
   List<EnemyShip> get enemies => this._enemies;
   
@@ -31,12 +30,16 @@ class SpaceInvaderModel {
   bool stageClear(){ return this._enemies.length == 0; }
   
   setRunning(bool run) { this._running = run; }
-
-  setLevel(int lvl) { this._currentLevel = lvl; }
-  
-  getLevel() { return this._currentLevel; }
   
   getLeftShips() { return _enemies.length; }
+  
+  getPlayerHitpoints() { return _player._hitpoints; }
+ 
+  getLevel() { return this._currentLevel; }
+  
+  setLevel(int lvl) { 
+    if(lvl <= _levels.length) this._currentLevel = lvl;  
+  }
 
   setGameOver(){
     this._gameOver = true;
@@ -127,6 +130,8 @@ class SpaceInvaderModel {
   loadLevel(int stage){
     
     _enemies.clear();
+    _player = null;
+    _projectiles.clear();
     setLevel(stage);
         
     Level level = _levels[stage];
@@ -184,9 +189,6 @@ class SpaceInvaderModel {
     _projectiles.toList().forEach((p) => p.move());
   }
   
-  playerHitpoints() {
-    return _player._hitpoints;
-  }
   
   /**
    * Gibt den momentan Spielstand zurück

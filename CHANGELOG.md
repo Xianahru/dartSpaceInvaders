@@ -14,4 +14,11 @@
 
 ## 0.0.2a
 
--Added distinct cannons to Player and Enemy Ships
+- Added distinct cannons to Player and Enemy Ships
+
+
+## 0.0.2b
+
+- Added level advancement
+- Fixed various bugs
+- added some textures

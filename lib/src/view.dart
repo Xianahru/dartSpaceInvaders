@@ -4,14 +4,17 @@ class SpaceInvaderView {
   
   final menu = html.querySelector('#menu');
   final start = html.querySelector('#start');
-  final options = html.querySelector('#options');
+//final options = html.querySelector('#options');
   final help = html.querySelector('#help');
+  final next = html.querySelector('#next');
   final bars = html.querySelector('#bars');
   final levelbar = html.querySelector('#levelbar');
   final enemybar = html.querySelector('#enemybar');
   final notification = html.querySelector('#notification');
   final gamesection = html.querySelector('#gamesection');
   final board = html.querySelector('#board');
+  final overlay = html.querySelector('#overlay');
+  final instructions = html.querySelector('#instructions');
   final status = html.querySelector('#status');
   final healthpoints = html.querySelector('#healthpoints');
   final score = html.querySelector('#score');
@@ -29,14 +32,21 @@ class SpaceInvaderView {
     }
     
     if(model.getGameOver() == true) {
-      
       notification.style.display = 'block';
-      notification.innerHtml = "Game Over! Enemies took over your ship!";
+      if(model.getPlayerHitpoints() <= 0) {
+        notification.innerHtml = "Game Over! Enemies destructed your ship! </br> You reached Level ${model.getLevel()} with a score of ${model.getScore()}.";
+      } else {
+        notification.innerHtml = "Game Over! Enemies took over your ship! </br> You reached Level ${model.getLevel()} with a score of ${model.getScore()}.";        
+      }
+    }
+    
+    if(model.stageClear() == true) {
+      showOverlay();
     }
     
     levelbar.innerHtml = "Level ${model.getLevel()}";
     enemybar.innerHtml = "${model.getLeftShips()} enemies left";
-    healthpoints.innerHtml = "Health: ${model.playerHitpoints()}";
+    healthpoints.innerHtml = "Health: ${model.getPlayerHitpoints()}";
     score.innerHtml = "Points: ${model.getScore()}";
     
     updateField(model);
@@ -63,8 +73,11 @@ class SpaceInvaderView {
             case 'projectile':
               point.classes.add('projectile');
               break;
-            case 'cannon':
-              point.classes.add('cannon');
+            case 'cannonPlayer':
+              point.classes.add('cannonPlayer');
+              break;
+            case 'cannonEnemy':
+              point.classes.add('cannonEnemy');
               break;
             default:
               point.classes.add('empty');
@@ -92,4 +105,17 @@ class SpaceInvaderView {
     }
     board.innerHtml = table;
   }
+  
+  void showInstructions() {
+    menu.style.display = 'none';
+    instructions.style.display = 'block';
+  }
+  
+  void showOverlay() {
+    overlay.style.display = 'block';
+  }
+  
+  void hideOverlay() {
+      overlay.style.display = 'none';
+    }
 }

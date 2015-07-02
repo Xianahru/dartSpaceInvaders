@@ -4,10 +4,13 @@
   font-family: Arial;
   font-size: 20px;
   color: #fff;
+  z-index: 1;
 }
 
 body {
-  background-image: url("/src/background.jpg"); 
+  background-image: url("/src/img/background.jpg"); 
+  width: 100%;
+  height: 100%;
   overflow: hidden; 
 }
 
@@ -15,6 +18,11 @@ h1 {
   padding: 20px;
   font-size: 36px;
   background: rgba(255, 255, 255, .2);
+}
+
+h2 {
+  font-size: 28px;
+  background: rgba(255, 255, 255, .1);
 }
 
 footer {
@@ -57,7 +65,8 @@ footer {
   padding: 5px;
   width: 50%;
   background: rgba(255, 255, 255, .1);
-  color: #fff;
+  font-size: 14px;
+  color: red;
   text-align: center;
 }
 
@@ -66,7 +75,7 @@ footer {
   font-size: 16px;
 }
 
-#start, #options, #help {
+#start, #options, #help, #next {
   margin: 5px auto;
   padding: 2px;
   width: 100px;
@@ -74,13 +83,25 @@ footer {
   border-radius: 5px;
 }
 
-#start:hover, #options:hover, #help:hover {
+#start:hover, #options:hover, #help:hover, #next:hover {
   border-color: #aaa;
   color: #aaa;
 }
 
 #gamesection {
   margin: 10px auto;
+}
+
+#overlay {
+  position: fixed;
+  padding: 50px;
+  top: 50%;
+  left: 0px;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  background: #555;
+  z-index: 10;
 }
 
 #board {
@@ -91,6 +112,32 @@ footer {
 #board td {
   width: 8px;
   height: 8px;
+}
+
+#instructions {
+  margin: 10px auto;
+}
+
+#img {
+  width: 20%;
+}
+
+#meaning {
+  width: 80%;
+}
+
+#preview {
+  border-spacing: 0px;
+}
+
+#preview td {
+  width: 12px;
+  height: 12px;
+}
+
+#meaning p {
+  font-size: 12px;
+  text-align: left;
 }
 
 #copyright {
@@ -126,7 +173,11 @@ footer {
   background: blue;
 }
 
-.cannon {
+.cannonPlayer {
+  background: yellow;
+}
+
+.cannonEnemy {
   background: yellow;
 }
 
@@ -135,5 +186,6 @@ footer {
 }
 
 .projectile {
-  background: white;
+ background-image: url("/src/img/projectile.png"); 
+ scale: 0.5;
 }
