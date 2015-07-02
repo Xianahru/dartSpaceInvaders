@@ -11,3 +11,7 @@
 - Added a GameOver-Screen
 
 - Changed the probabilty of an enemy cannon shooting
+
+## 0.0.2a
+
+-Added distinct cannons to Player and Enemy Ships

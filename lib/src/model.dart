@@ -41,7 +41,6 @@ class SpaceInvaderModel {
   setGameOver(){
     this._gameOver = true;
     this._running = false;
-    print('GAME OVER BOOOOYS');
     print('You\'ve reached level ${this._currentLevel} with a score of ${this._score}');
   }
   
@@ -203,13 +202,13 @@ class SpaceInvaderModel {
     for(EnemyShip enemy in _enemies){
       for(Map<String, int> coor in enemy.parts){
         if(coor['cannon']==0) field[coor['row']][coor['col']] = 'part';
-        else field[coor['row']][coor['col']] = 'cannon';
+        else field[coor['row']][coor['col']] = 'cannonEnemy';
       }
     }
     
     for(Map<String, int> coor in _player.parts){
       if(coor['cannon']==0) field[coor['row']][coor['col']] = 'player';
-      else field[coor['row']][coor['col']] = 'cannon';
+      else field[coor['row']][coor['col']] = 'cannonPlayer';
     }
     
     for(Projectile proj in _projectiles){
