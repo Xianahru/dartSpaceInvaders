@@ -114,7 +114,7 @@ footer {
 }
 
 #instructions {
-  margin: 10px auto;
+  margin: 50px auto;
 }
 
 #img {
@@ -123,6 +123,10 @@ footer {
 
 #meaning {
   width: 80%;
+}
+
+#list {
+  border-spacing: 10px;
 }
 
 #preview {
@@ -186,25 +190,31 @@ footer {
 }
 
 .player {
-  background: blue;
+  background-image: url("/src/img/player.png");
+  background-size: contain;
 }
 
 .cannonPlayer {
-  background: yellow;
+  background-image: url("/src/img/cannon_player.png");
+  background-size: contain;
 }
 
 .cannonEnemy {
-  background: yellow;
+  background-image: url("/src/img/cannon_enemy.png");
+  background-size: contain;
 }
 
 .part {
-  background: red;
+  background-image: url("/src/img/enemy.png");
+  background-size: contain;
 }
 
 .enemyProjectile {
- background-image: url("/src/img/projectile.png"); 
+ background-image: url("/src/img/projectile_red.png");
+ background-size: contain;
 }
 
 .playerProjectile {
-  background: grey;
+  background-image: url("/src/img/projectile_blue.png");
+  background-size: contain;
 }
