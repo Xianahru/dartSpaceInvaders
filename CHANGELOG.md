@@ -19,6 +19,6 @@
 
 ## 0.0.2b
 
-- Added level advancement
+- Added level advancement and a boss
 - Fixed various bugs
 - added some textures
