@@ -17,7 +17,7 @@ class SpaceInvaderView {
   final instructions = html.querySelector('#instructions');
   final status = html.querySelector('#status');
   final healthpoints = html.querySelector('#healthpoints');
-  final health = html.querySelector('#health');
+  final health = html.querySelectorAll('#health');
   final score = html.querySelector('#score');
   
   /**
@@ -48,6 +48,7 @@ class SpaceInvaderView {
     levelbar.innerHtml = "Level ${model.getLevel()}";
     enemybar.innerHtml = "${model.getLeftShips()} enemies left";
     score.innerHtml = "Points: ${model.getScore()}";
+    buildHealth(model.getPlayerHitpoints());
     
     updateField(model);
   }
@@ -109,12 +110,35 @@ class SpaceInvaderView {
   void buildHealth(int life) {
     String out = "";
     out += "<tr>";
-    String color = "green";
+    out += "<td>HP:</td>";
+    String color = checkForColor(life);
     for(int i = 0; i < life; i++) {
       out += "<td id='health' class='$color'></td>";
     }
+    for(int j = life; j < 5; j++) {
+      out += "<td id='clear'></td>";
+    }
     out += "</tr>";
     healthpoints.innerHtml = out;
+  }
+  
+  String checkForColor(int life) {
+    var color = "";
+    switch(life) {
+      case 1:
+        color = "red";
+        break;
+      case 2:
+        color = "yellow";
+        break;
+      case 3:
+        color = "yellow";
+        break;
+      default:
+        color = "green";
+        break;
+    }
+    return color;
   }
   
   void showInstructions() {

@@ -22,7 +22,6 @@ class SpaceInvaderControl {
       await model.setup();
       model.loadLevel(1);
       model.setRunning(true);
-      view.buildHealth(model.getPlayerHitpoints());
       view.generateField(model);
       view.update(model);
       shipTrigger = new Timer.periodic(shipMovement, (Timer t) {
