@@ -22,6 +22,7 @@ class SpaceInvaderControl {
       await model.setup();
       model.loadLevel(1);
       model.setRunning(true);
+      view.buildHealth(model.getPlayerHitpoints());
       view.generateField(model);
       view.update(model);
       shipTrigger = new Timer.periodic(shipMovement, (Timer t) {
@@ -43,11 +44,11 @@ class SpaceInvaderControl {
     });
     
     view.next.onClick.listen((html.MouseEvent event) {
-      model.setLevel(model.getLevel()+1);
-      model.loadLevel(model.getLevel());
-      view.hideOverlay();
-      view.update(model);
-    });
+          model.setLevel(model.getLevel()+1);
+          model.loadLevel(model.getLevel());
+          view.hideOverlay();
+          view.update(model);
+     });
     
     html.window.onKeyDown.listen((html.KeyboardEvent event) {
       if(!model.isRunning() || model.getGameOver() || model.stageClear()) return;

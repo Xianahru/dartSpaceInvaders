@@ -2,3 +2,5 @@
 build/
 packages/
 .pub/
+#PURGE OSX trash data
+.DS_Store

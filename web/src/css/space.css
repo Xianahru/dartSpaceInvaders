@@ -93,15 +93,14 @@ footer {
 }
 
 #overlay {
+  z-index: 2;
   position: fixed;
-  padding: 50px;
-  top: 50%;
-  left: 0px;
+  padding: 50px 0px; 
   width: 100%;
-  height: 100px;
-  text-align: center;
-  background: #555;
-  z-index: 10;
+  top: 150px;
+  left: 0px;
+  right: 0px;
+  background: green;
 }
 
 #board {
@@ -156,7 +155,6 @@ footer {
 }
 
 #healthpoints {
-  padding: 2px;
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
@@ -167,6 +165,23 @@ footer {
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
+}
+
+#healthpoints td {
+  width: 16px;
+  height: 16px;
+}
+
+#health .green {
+  background-image: url("/src/img/health_green.png");
+}
+
+#health .yellow {
+  background-image: url("/src/img/health_yellow.png");
+}
+
+#health .red {
+  background-image: url("/src/img/health_red.png");
 }
 
 .player {
@@ -187,5 +202,4 @@ footer {
 
 .projectile {
  background-image: url("/src/img/projectile.png"); 
- scale: 0.5;
 }
