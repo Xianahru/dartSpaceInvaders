@@ -172,15 +172,15 @@ footer {
   height: 16px;
 }
 
-#health .green {
+.green {
   background-image: url("/src/img/health_green.png");
 }
 
-#health .yellow {
+.yellow {
   background-image: url("/src/img/health_yellow.png");
 }
 
-#health .red {
+.red {
   background-image: url("/src/img/health_red.png");
 }
 
