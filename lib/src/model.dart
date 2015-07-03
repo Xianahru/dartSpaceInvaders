@@ -215,9 +215,11 @@ class SpaceInvaderModel {
     }).toList();
     
     for(EnemyShip enemy in _enemies){
+      int health = ((enemy.hitpoints / enemy.baseHitpoints) * 100).round();
+      print(health);
       for(Map<String, int> coor in enemy.parts){
-        if(coor['cannon']==0) field[coor['row']][coor['col']] = 'part';
-        else field[coor['row']][coor['col']] = 'cannonEnemy';
+        if(coor['cannon']==0) field[coor['row']][coor['col']] = 'part_$health';
+        else field[coor['row']][coor['col']] = 'cannonEnemy_$health';
       }
     }
     

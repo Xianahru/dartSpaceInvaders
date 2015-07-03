@@ -54,6 +54,7 @@ abstract class Ship {
   List<Map<String, int>> get parts => _parts;
 
   int get hitpoints => this._hitpoints;
+  int get baseHitpoints => this._baseHitpoints;
 
   /**
    * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
