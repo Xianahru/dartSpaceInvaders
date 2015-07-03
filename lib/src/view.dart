@@ -63,13 +63,13 @@ class SpaceInvaderView {
         final point = board.querySelector('#field_${row}_${col}');
         if(point != null) {
           point.classes.clear();
-          var tmp = field[row][col];
-          switch(tmp) {
+          var tmp = field[row][col].split("_");
+          switch(tmp[0]) {
             case 'player':
               point.classes.add('player');
               break;
             case 'part':
-              point.classes.add('part');
+              point.classes.add(checkStatus(tmp[1]));
               break;
             case 'enemyProjectile':
               point.classes.add('enemyProjectile');
@@ -178,5 +178,29 @@ class SpaceInvaderView {
    */
   void hideOverlay() {
       overlay.style.display = 'none';
+  }
+  
+  /**
+   * Aktualisiert den Schiffstatus der Gegner
+   */
+  String checkStatus(String hp) {
+    String out = "";
+    int tmp = int.parse(hp);
+    if(tmp >= 75) {
+          out = "part_75";
+    } else {
+      if(tmp >= 50) {
+            out = "part_50";
+      } else {
+        if(tmp >= 25) {
+              out = "part_25";
+        } else {
+          if(tmp >= 0) {
+            out = "part_0";
+          } 
+        }
+      }
+    }
+    return out;
   }
 }

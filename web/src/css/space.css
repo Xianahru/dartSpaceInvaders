@@ -189,6 +189,35 @@ footer {
   background-image: url("/src/img/health_red.png");
 }
 
+.part_75, .part_50, .part_25, .part_0 {
+  background-image: url("/src/img/enemy.png");
+  background-size: contain;
+}
+
+.part_50 {
+  filter: saturate(75%);
+  -webkit-filter: saturate(75%);
+  -moz-filter: saturate(75%);
+  -o-filter: saturate(75%);
+  -ms-filter: saturate(75%);
+}
+
+.part_25 {
+  filter: saturate(50%);
+  -webkit-filter: saturate(50%);
+  -moz-filter: saturate(50%);
+  -o-filter: saturate(50%);
+  -ms-filter: saturate(50%);
+}
+
+.part_0 {
+  filter: saturate(25%);
+  -webkit-filter: saturate(25%);
+  -moz-filter: saturate(25%);
+  -o-filter: saturate(25%);
+  -ms-filter: saturate(25%);
+}
+
 .player {
   background-image: url("/src/img/player.png");
   background-size: contain;
@@ -201,11 +230,6 @@ footer {
 
 .cannonEnemy {
   background-image: url("/src/img/cannon_enemy.png");
-  background-size: contain;
-}
-
-.part {
-  background-image: url("/src/img/enemy.png");
   background-size: contain;
 }
 
