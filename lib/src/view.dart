@@ -32,7 +32,7 @@ class SpaceInvaderView {
       status.style.display = 'block';
     }
     
-    if(model.getGameOver() == true) {
+    if(model.gameOver() == true) {
       notification.style.display = 'block';
       if(model.getPlayerHitpoints() <= 0) {
         notification.innerHtml = "Game Over! Enemies destroyed your ship! </br> You reached Level ${model.getLevel()} with a score of ${model.getScore()}.";

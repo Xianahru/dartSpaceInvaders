@@ -18,6 +18,7 @@ class SpaceInvaderModel {
   var ships;
   
   int _currentLevel = 1;
+  bool _gameWon = false;
   bool _gameOver = false;
   bool _running = false;
   
@@ -27,9 +28,11 @@ class SpaceInvaderModel {
   
   bool isRunning() { return this._running; }
 
-  bool getGameOver(){ return this._gameOver; }
+  bool gameOver(){ return this._gameOver; }
   
   bool stageClear(){ return this._enemies.length == 0; }
+  
+  bool gameWon() { return this._gameWon; }
   
   setRunning(bool run) { this._running = run; }
   
@@ -39,8 +42,11 @@ class SpaceInvaderModel {
  
   getLevel() { return this._currentLevel; }
   
-  setLevel(int lvl) { 
-    if(lvl <= _levels.length) this._currentLevel = lvl;  
+  setLevel(int lvl) {
+    if(lvl > _levels.length) {
+      this._running = false;
+      this._gameWon = true;
+    } else this._currentLevel = lvl;  
   }
 
   setGameOver(){
