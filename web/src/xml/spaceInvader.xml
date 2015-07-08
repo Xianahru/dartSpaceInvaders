@@ -9,7 +9,46 @@
 		</level>
 		<level stage='2'>
 			<spawnpoints>
-				<spawnpoint row='0' col='14' type='2'/>
+				<spawnpoint row='2' col='5' type='1'/>
+				<spawnpoint row='2' col='17' type='1'/>
+				<spawnpoint row='2' col='25' type='1'/>
+			</spawnpoints>
+		</level>
+		<level stage='3'>
+			<spawnpoints>
+				<spawnpoint row='2' col='4' type='1'/>
+				<spawnpoint row='2' col='9' type='1'/>
+				<spawnpoint row='2' col='17' type='1'/>
+				<spawnpoint row='2' col='25' type='1'/>
+			</spawnpoints>
+		</level>
+		<level stage='4'>
+			<spawnpoints>
+				<spawnpoint row='2' col='5' type='1'/>
+				<spawnpoint row='2' col='10' type='1'/>
+				<spawnpoint row='2' col='17' type='1'/>
+				<spawnpoint row='2' col='25' type='1'/>
+				<spawnpoint row='5' col='14' type='1'/>
+			</spawnpoints>
+		</level>
+		<level stage='5'>
+			<spawnpoints>
+			<spawnpoint row='0' col='14' type='2'/>
+			</spawnpoints>
+		</level>
+		<level stage='6'>
+			<spawnpoints>
+				<spawnpoint row='5' col='5' type='1'/>
+				<spawnpoint row='2' col='10' type='1'/>
+				<spawnpoint row='2' col='17' type='1'/>
+				<spawnpoint row='5' col='27' type='1'/>
+				<spawnpoint row='2' col='22' type='1'/>
+				<spawnpoint row='5' col='25' type='1'/>
+			</spawnpoints>
+		</level>
+		<level stage='7'>
+			<spawnpoints>
+				<spawnpoint row='0' col='14' type='3'/>
 			</spawnpoints>
 		</level>
 	</levels>
@@ -19,7 +58,74 @@
 			<coordinate row='-1' col='-1' cannon='0'/>
 			<coordinate row='-1' col='1' cannon='0'/>
 		</ship>
-		<ship type='2' hitpoints='20'>
+		<ship type='2' hitpoints='10'>
+			<coordinate row='0' col='0' cannon='0'/>
+			<coordinate row='0' col='1' cannon='0'/>
+			<coordinate row='0' col='2' cannon='0'/>
+			<coordinate row='0' col='-1' cannon='0'/>
+			<coordinate row='0' col='-2' cannon='0'/>
+			
+			<coordinate row='1' col='0' cannon='0'/>
+			<coordinate row='1' col='1' cannon='0'/>
+			<coordinate row='1' col='2' cannon='0'/>
+			<coordinate row='1' col='3' cannon='0'/>
+			<coordinate row='1' col='4' cannon='0'/>
+			<coordinate row='1' col='-1' cannon='0'/>
+			<coordinate row='1' col='-2' cannon='0'/>
+			<coordinate row='1' col='-3' cannon='0'/>
+			<coordinate row='1' col='-4' cannon='0'/>
+			
+			<coordinate row='2' col='0' cannon='0'/>
+			<coordinate row='2' col='1' cannon='0'/>
+			<coordinate row='2' col='2' cannon='0'/>
+			<coordinate row='2' col='3' cannon='0'/>
+			<coordinate row='2' col='4' cannon='0'/>
+			<coordinate row='2' col='5' cannon='0'/>
+			<coordinate row='2' col='-1' cannon='0'/>	
+			<coordinate row='2' col='-2' cannon='0'/>
+			<coordinate row='2' col='-3' cannon='0'/>
+			<coordinate row='2' col='-4' cannon='0'/>
+			<coordinate row='2' col='-5' cannon='0'/>
+			
+			<coordinate row='3' col='0' cannon='0'/>
+			<coordinate row='3' col='2' cannon='0'/>
+			<coordinate row='3' col='3' cannon='0'/>
+			<coordinate row='3' col='5' cannon='0'/>
+			<coordinate row='3' col='6' cannon='0'/>
+			<coordinate row='3' col='-2' cannon='0'/>
+			<coordinate row='3' col='-3' cannon='0'/>	
+			<coordinate row='3' col='-5' cannon='0'/>
+			<coordinate row='3' col='-6' cannon='0'/>
+			
+			
+			<coordinate row='4' col='0' cannon='0'/>
+			<coordinate row='4' col='1' cannon='0'/>
+			<coordinate row='4' col='2' cannon='0'/>
+			<coordinate row='4' col='3' cannon='0'/>
+			<coordinate row='4' col='4' cannon='0'/>
+			<coordinate row='4' col='5' cannon='0'/>
+			<coordinate row='4' col='6' cannon='0'/>	
+			<coordinate row='4' col='7' cannon='0'/>
+			<coordinate row='4' col='-1' cannon='0'/>
+			<coordinate row='4' col='-2' cannon='0'/>
+			<coordinate row='4' col='-3' cannon='0'/>	
+			<coordinate row='4' col='-4' cannon='0'/>
+			<coordinate row='4' col='-5' cannon='0'/>
+			<coordinate row='4' col='-6' cannon='0'/>
+			<coordinate row='4' col='-7' cannon='0'/>
+			
+			<coordinate row='5' col='0' cannon='1'/>
+			<coordinate row='5' col='3' cannon='0'/>
+			<coordinate row='5' col='4' cannon='0'/>
+			<coordinate row='5' col='5' cannon='0'/>
+			<coordinate row='5' col='-3' cannon='0'/>
+			<coordinate row='5' col='-4' cannon='0'/>
+			<coordinate row='5' col='-5' cannon='0'/>
+			
+			<coordinate row='6' col='4' cannon='1'/>
+			<coordinate row='6' col='-4' cannon='1'/>
+		</ship>
+		<ship type='3' hitpoints='20'>
 			<coordinate row='0' col='0' cannon='0'/>
 			<coordinate row='0' col='1' cannon='0'/>
 			<coordinate row='0' col='2' cannon='0'/>
@@ -122,8 +228,8 @@
 			
 			<coordinate row='10' col='0' cannon='0'/>
 			<coordinate row='10' col='1' cannon='0'/>
-			<coordinate row='10' col='2' cannon='0'/>
-			<coordinate row='10' col='-1' cannon='0'/>
+			<coordinate row='10' col='2' cannon='1'/>
+			<coordinate row='10' col='-1' cannon='1'/>
 		</ship>
 	</ships>
 </spaceinvader>
