@@ -167,10 +167,11 @@ class SpaceInvaderModel {
   /**
    * Spawnt ein [Projectile]
    * Unterscheidet dabei ein vom Spieler generiertes [Projectile] und das eines [EnemyShip]
+   * Der Spieler kann maximal 5 [Projectiles] auf dem Feld haben
    */
   spawnProjectile(Map<String, int> coor, bool player){
     Projectile dummy = new Projectile(coor, this);
-    if(_running && player && this._playerProjectiles.length < 3) {
+    if(_running && player && this._playerProjectiles.length < 5) {
       _projectiles.add(dummy);
       _playerProjectiles.add(dummy);
     }
