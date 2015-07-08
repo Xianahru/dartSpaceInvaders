@@ -7,7 +7,7 @@ class SpaceInvaderModel {
   List<Projectile> _projectiles = [];
   List<Projectile> _playerProjectiles = [];
   PlayerShip _player;
-  SpawnPoint _playerSpawn = new SpawnPoint.player({'row': 29, 'col': 15});
+  SpawnPoint _playerSpawn = new SpawnPoint.player({'row': 28, 'col': 15});
   int _score = 0;
 
   SpawnPointInterpreter interp = new SpawnPointInterpreter();
@@ -150,11 +150,15 @@ class SpaceInvaderModel {
       _enemies.add(new EnemyShip(this, interp.interpret(spawn.type.parts, spawn), spawn.type.hitpoints));
     }
     
-    // ;----- Noch in ein ShipType umwandeln und übergeben anstatt einen Dummy [Wenn wir verschiedene Schiffe aus der XML auslesen wollen] -----;
     List<Map<String, int>> dummy = [
-        {'row': 0, 'col': 0, 'cannon': 1},
+        {'row': -1, 'col': 0, 'cannon': 1},
+        {'row': 0, 'col': 0, 'cannon': 0},
         {'row': 0, 'col': 1, 'cannon': 0},
-        {'row': 0, 'col': -1,'cannon': 0}
+        {'row': 0, 'col': -1,'cannon': 0},
+        {'row': 1, 'col': 1, 'cannon': 0},
+        {'row': 1, 'col': -1, 'cannon': 0},
+        {'row': 1, 'col': 2, 'cannon': 0},
+        {'row': 1, 'col': -2, 'cannon': 0}
       ];
     _player = new PlayerShip(this, interp.interpret(dummy, _playerSpawn), 5);
     
