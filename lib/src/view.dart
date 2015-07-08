@@ -1,30 +1,87 @@
 part of SpaceInvader;
 
+/**
+ * Ein Objekt der [SpaceInvaderView] nutzt den DOM-Tree 
+ * um dem Nutzer die Änderungen im [SpaceInvaderModel]
+ * zu visualisieren
+ */
 class SpaceInvaderView {
   
+  /**
+   * Element mit der id="menu" des DOM-Trees
+   */
   final menu = html.querySelector('#menu');
+  /**
+   * Element mit der id="start" des DOM-Trees
+   */
   final start = html.querySelector('#start');
+  /**
+   * Element mit der id="back" des DOM-Trees
+   */
   final back = html.querySelector('#back');
+  /**
+   * Element mit der id="help" des DOM-Trees
+   */
   final help = html.querySelector('#help');
+  /**
+   * Element mit der id="next" des DOM-Trees
+   */
   final next = html.querySelector('#next');
+  /**
+   * Element mit der id="bars" des DOM-Trees
+   */
   final bars = html.querySelector('#bars');
+  /**
+   * Element mit der id="levelbar" des DOM-Trees
+   */
   final levelbar = html.querySelector('#levelbar');
+  /**
+   * Element mit der id="enemybar" des DOM-Trees
+   */
   final enemybar = html.querySelector('#enemybar');
+  /**
+   * Element mit der id="notification" des DOM-Trees
+   */
   final notification = html.querySelector('#notification');
+  /**
+   * Element mit der id="gamesection" des DOM-Trees
+   */
   final gamesection = html.querySelector('#gamesection');
+  /**
+   * Element mit der id="board" des DOM-Trees
+   */
   final board = html.querySelector('#board');
+  /**
+   * Element mit der id="overlay" des DOM-Trees
+   */
   final overlay = html.querySelector('#overlay');
+  /**
+   * Element mit der id="instructions" des DOM-Trees
+   */
   final instructions = html.querySelector('#instructions');
+  /**
+   * Element mit der id="status" des DOM-Trees
+   */
   final status = html.querySelector('#status');
+  /**
+   * Element mit der id="healthpoints" des DOM-Trees
+   */
   final healthpoints = html.querySelector('#healthpoints');
+  /**
+   * Element mit der id="health" des DOM-Trees
+   */
   final health = html.querySelectorAll('#health');
+  /**
+   * Element mit der id="score" des DOM-Trees
+   */
   final score = html.querySelector('#score');
   
   /**
-   * Aktualisiert das HUD, sowie das Spielfeld
+   * Nutzt ein [SpaceInvaderModel] um das Spielfeld zu aktualisieren
    */
   void update(SpaceInvaderModel model) {
     
+    //Schalte View auf Spielmodus
     if(model.isRunning() == true) {
       menu.style.display = 'none';
       bars.style.display = 'block';
@@ -32,6 +89,7 @@ class SpaceInvaderView {
       status.style.display = 'block';
     }
     
+    //Schalte Spiel auf Game Over und zeige Game Over Message
     if(model.gameOver() == true) {
       notification.style.display = 'block';
       if(model.getPlayerHitpoints() <= 0) {
@@ -41,20 +99,35 @@ class SpaceInvaderView {
       }
     }
     
-    if(model.stageClear() == true) {
-      showOverlay();
+    //Blende das Overlay ein
+    if(model.stageClear() == true && model.gameWon() == true) {
+      overlay.style.display = 'block';
+      overlay.innerHtml = "Congratulations. </br> You blasted the enemies and saved the whole galaxy!";
+    } else {
+      if(model.stageClear() == true && model.gameWon() == false) {
+        overlay.style.display = 'block';
+      }
     }
     
+    //Aktualisiere die restlichen Feinde
+    if(model.getLeftShips() == 1) {
+      enemybar.innerHtml = "${model.getLeftShips()} enemy left";
+    } else {
+      enemybar.innerHtml = "${model.getLeftShips()} enemies left";
+    }
+    
+    //Aktualisiere Level, Score und Lebenspunkte
     levelbar.innerHtml = "Level ${model.getLevel()}";
-    enemybar.innerHtml = "${model.getLeftShips()} enemies left";
     score.innerHtml = "Points: ${model.getScore()}";
     buildHealth(model.getPlayerHitpoints());
     
+    //Update das Feld
     updateField(model);
   }
   
   /**
-   * Aktualisiert das Spielfeld durch den aktuellen Zustand eines [Models]
+   * Aktualisiert das Spielfeld durch den aktuellen Zustand
+   * eines Objektes der Klasse [SpaceInvaderModel]
    */
   void updateField(SpaceInvaderModel model) {
     final field = model.getCurrentState();
@@ -93,7 +166,8 @@ class SpaceInvaderView {
   }
 
   /**
-   * Erzeugt ein Spielfeld aus dem aktuellen Zustand eines [Models]
+   * Erzeugt ein Spielfeld aus dem aktuellen Zustand
+   * eines Objektes der Klasse [SpaceInvaderModel]
    */
   void generateField(SpaceInvaderModel model) {
     final field = model.getCurrentState();
@@ -112,6 +186,8 @@ class SpaceInvaderView {
   
   /**
    * Erzeugt die Lebenselemente in der Healthbar
+   * Der zu übergebnde Wert, ist der akutelle [hitpoints]-Wert
+   * des [PlayerShip]-Objekts
    */
   void buildHealth(int life) {
     String out = "";
@@ -130,6 +206,8 @@ class SpaceInvaderView {
   
   /**
    * Aktualisiert die Farbe der Lebenselemente
+   * Der zu übergebnde Wert, ist der akutelle [hitpoints]-Wert
+   * des [PlayerShip]-Objekts
    */
   String checkForColor(int life) {
     var color = "";
@@ -151,7 +229,7 @@ class SpaceInvaderView {
   }
   
   /**
-   * Zeigt das how-to-play
+   * Zeigt die Erklärung
    */
   void showInstructions() {
     menu.style.display = 'none';
@@ -159,7 +237,7 @@ class SpaceInvaderView {
   }
   
   /**
-   * Zeigt das menü
+   * Zeigt das Menü
    */
   void hideInstructions() {
     menu.style.display = 'block';
@@ -167,21 +245,9 @@ class SpaceInvaderView {
   }
   
   /**
-   * Zeigt das Overlay
-   */
-  void showOverlay() {
-    overlay.style.display = 'block';
-  }
-  
-  /**
-   * Versteckt das Overlay
-   */
-  void hideOverlay() {
-      overlay.style.display = 'none';
-  }
-  
-  /**
-   * Aktualisiert den Schiffstatus der Gegner
+   * Visualisiert den aktuellen Gesundheitsstatus eines Schiffes
+   * Der zu übergebende Wert, ist der aktuelle [hitpoints]-Wert
+   * eines Objektes, der Klasse [EnemyShip]
    */
   String checkStatus(String hp) {
     String out = "";
