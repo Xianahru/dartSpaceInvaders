@@ -70,6 +70,8 @@ abstract class Ship {
   setup();
 
   reduceHitpointsBy(int damage);
+  
+  shoot();
 
   /**
    * Stringrepräsentation eines Schiffes
@@ -91,6 +93,7 @@ class EnemyShip extends Ship {
   
   /**
    * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
+   * Dabei werden nur [Projectile] vom Spieler überprüft, FriendlyFire ist somit deaktiviert.
    * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
    */
   void detectCollision() {
@@ -197,6 +200,7 @@ class PlayerShip extends Ship {
   
   /**
    * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
+   * Es kann nicht von einem eigenen [Projectile] getroffen werden.
    * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
    */
   void detectCollision() {

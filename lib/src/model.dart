@@ -56,6 +56,13 @@ class SpaceInvaderModel {
   }
   
   /**
+   * Erhöhrt die Punktzahl um den angegebenen Betrag
+   */
+  addScore(int i){ this._score += i; }
+  
+  getScore() { return this._score; }
+  
+  /**
    * Entfernt das angegebene [Projectile] aus der Liste der [Projectile] [_projectiles]
    */
   removeProjectile(Projectile proj){
@@ -70,12 +77,6 @@ class SpaceInvaderModel {
     this._enemies.remove(enemy);
   }
   
-  /**
-   * Erhöhrt die Punktzahl um den angegebenen Betrag
-   */
-  addScore(int i){ this._score += i; }
-  
-  getScore() { return this._score; }
 
   /**
    * ACTHUNG
