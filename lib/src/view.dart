@@ -123,7 +123,6 @@ class SpaceInvaderView {
         overlay.style.display = 'block';
       }
     }
-    
   }
   
   /**
@@ -143,7 +142,7 @@ class SpaceInvaderView {
               point.classes.add('player');
               break;
             case 'part':
-              point.classes.add(checkStatus(tmp[1]));
+              point.classes.add(checkStatus('part', tmp[1]));
               break;
             case 'enemyProjectile':
               point.classes.add('enemyProjectile');
@@ -156,6 +155,7 @@ class SpaceInvaderView {
               break;
             case 'cannonEnemy':
               point.classes.add('cannonEnemy');
+              point.classes.add(checkStatus('cannonEnemy', tmp[1]));
               break;
             default:
               point.classes.add('empty');
@@ -250,23 +250,45 @@ class SpaceInvaderView {
    * Der zu übergebende Wert, ist der aktuelle [hitpoints]-Wert
    * eines Objektes, der Klasse [EnemyShip]
    */
-  String checkStatus(String hp) {
+  String checkStatus(String part, String hp) {
+    
     String out = "";
     int tmp = int.parse(hp);
-    if(tmp >= 75) {
-          out = "part_75";
-    } else {
-      if(tmp >= 50) {
-            out = "part_50";
-      } else {
-        if(tmp >= 25) {
-              out = "part_25";
+
+    switch(part) {
+      case 'part':
+        if(tmp >= 75) {
+              out = "part_75";
         } else {
-          if(tmp >= 0) {
-            out = "part_0";
-          } 
+          if(tmp >= 50) {
+                out = "part_50";
+          } else {
+            if(tmp >= 25) {
+                  out = "part_25";
+            } else {
+              if(tmp >= 0) {
+                out = "part_0";
+              } 
+            }
+          }
         }
-      }
+        break;
+      case 'cannonEnemy':
+        if(tmp >= 75) {
+              out = "cannonEnemy_75";
+        } else {
+          if(tmp >= 50) {
+                out = "cannonEnemy_50";
+          } else {
+            if(tmp >= 25) {
+                  out = "cannonEnemy_25";
+            } else {
+              if(tmp >= 0) {
+                out = "cannonEnemy_0";
+              } 
+            }
+          }
+        }
     }
     return out;
   }

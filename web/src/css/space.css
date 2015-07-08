@@ -228,9 +228,33 @@ footer {
   background-size: contain;
 }
 
-.cannonEnemy {
+.cannonEnemy_75, .cannonEnemy_50, .cannonEnemy_25,.cannonEnemy_0 {
   background-image: url("/src/img/cannon_enemy.png");
   background-size: contain;
+}
+
+.cannonEnemy_50 {
+  filter: saturate(75%);
+  -webkit-filter: saturate(75%);
+  -moz-filter: saturate(75%);
+  -o-filter: saturate(75%);
+  -ms-filter: saturate(75%);
+}
+
+.cannonEnemy_25 {
+  filter: saturate(50%);
+  -webkit-filter: saturate(50%);
+  -moz-filter: saturate(50%);
+  -o-filter: saturate(50%);
+  -ms-filter: saturate(50%);
+}
+
+.cannonEnemy_0 {
+  filter: saturate(25%);
+  -webkit-filter: saturate(25%);
+  -moz-filter: saturate(25%);
+  -o-filter: saturate(25%);
+  -ms-filter: saturate(25%);
 }
 
 .enemyProjectile {
