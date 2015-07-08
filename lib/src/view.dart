@@ -87,6 +87,21 @@ class SpaceInvaderView {
       bars.style.display = 'block';
       gamesection.style.display = 'block';
       status.style.display = 'block';
+      
+      //Aktualisiere die restlichen Feinde
+      if(model.getLeftShips() == 1) {
+        enemybar.innerHtml = "${model.getLeftShips()} enemy left";
+      } else {
+        enemybar.innerHtml = "${model.getLeftShips()} enemies left";
+      }
+      
+      //Aktualisiere Level, Score und Lebenspunkte
+      levelbar.innerHtml = "Level ${model.getLevel()}";
+      score.innerHtml = "Points: ${model.getScore()}";
+      buildHealth(model.getPlayerHitpoints());
+      
+      //Update das Feld
+      updateField(model);
     }
     
     //Schalte Spiel auf Game Over und zeige Game Over Message
@@ -109,20 +124,6 @@ class SpaceInvaderView {
       }
     }
     
-    //Aktualisiere die restlichen Feinde
-    if(model.getLeftShips() == 1) {
-      enemybar.innerHtml = "${model.getLeftShips()} enemy left";
-    } else {
-      enemybar.innerHtml = "${model.getLeftShips()} enemies left";
-    }
-    
-    //Aktualisiere Level, Score und Lebenspunkte
-    levelbar.innerHtml = "Level ${model.getLevel()}";
-    score.innerHtml = "Points: ${model.getScore()}";
-    buildHealth(model.getPlayerHitpoints());
-    
-    //Update das Feld
-    updateField(model);
   }
   
   /**
