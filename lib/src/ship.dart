@@ -60,19 +60,7 @@ abstract class Ship {
    * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
    * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
    */
-  void detectCollision() {
-    List<Projectile> projectiles = this._model.projectiles.toList();
-    for (Map<String, int> part in this._parts) {
-      for (Projectile prj in projectiles) {
-        if ((part['row'] == prj._coordinate['row']) &&
-            (part['col'] == prj._coordinate['col'])) {
-          print('Hit by enemy! Reducing HP by 1');
-          this.reduceHitpointsBy(1);
-          this._model.removeProjectile(prj);
-        }
-      }
-    }
-  }
+  void detectCollision();
 
   /**
    * Nachdem die Koordinaten des Schiffes eingetragen sind, werden [_leftMost] und [_rightMost]
@@ -100,6 +88,24 @@ class EnemyShip extends Ship {
   Map<String, int> _bottomMost;
 
   EnemyShip(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints) : super(model, parts, hitpoints);
+  
+  /**
+   * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
+   * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
+   */
+  void detectCollision() {
+    List<Projectile> projectiles = this._model.playerProjectiles.toList();
+    for (Map<String, int> part in this._parts) {
+      for (Projectile prj in projectiles) {
+        if ((part['row'] == prj._coordinate['row']) &&
+            (part['col'] == prj._coordinate['col'])) {
+          print('Hit by Player! Reducing HP by 1');
+          this.reduceHitpointsBy(1);
+          this._model.removeProjectile(prj);
+        }
+      }
+    }
+  }
 
   void move() {
     switch (determineDirection()) {
@@ -186,12 +192,30 @@ class EnemyShip extends Ship {
  * Bewegt sich nur bei Nutzereingabe
  */
 class PlayerShip extends Ship {
-  PlayerShip(
-      SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints)
-      : super(model, parts, hitpoints);
+  
+  PlayerShip(SpaceInvaderModel model, List<Map<String, int>> parts, int hitpoints) : super(model, parts, hitpoints);
+  
   /**
-   * Mthode um das [PlayerShip] zu bewegen.
-   * Vor jeder Bewegung wird auf Kollision geprüft.
+   * Überprüft dieses [Ship] drauf, ob es sich auf dem gleichen Feld wie ein [Projectile] befindet.
+   * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
+   */
+  void detectCollision() {
+    List<Projectile> projectiles = this._model.projectiles.toList();
+    for (Map<String, int> part in this._parts) {
+      for (Projectile prj in projectiles) {
+        if ((part['row'] == prj._coordinate['row']) &&
+            (part['col'] == prj._coordinate['col'])) {
+          print('Hit by Enemy! Reducing HP by 1');
+          this.reduceHitpointsBy(1);
+          this._model.removeProjectile(prj);
+        }
+      }
+    }
+  }
+  
+  /**
+   * Methode um das [PlayerShip] zu bewegen.
+   * Nach jeder Bewegung wird auf Kollision geprüft.
    */
   void move(String direction) {
     switch (direction) {
@@ -240,7 +264,7 @@ class PlayerShip extends Ship {
     if (this._hitpoints <= 0) {
       this._hitpoints = 0;
       _model.setGameOver();
-      print('PlayerShip is destroyed!');
+      print('PlayerShip is destroyed!');  
     }
   }
 
