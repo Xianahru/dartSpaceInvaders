@@ -100,11 +100,11 @@ class SpaceInvaderView {
     }
     
     //Blende das Overlay ein
-    if(model.stageClear() == true && model.gameWon() == true) {
-      overlay.style.display = 'block';
-      overlay.innerHtml = "Congratulations. </br> You blasted the enemies and saved the whole galaxy!";
-    } else {
-      if(model.stageClear() == true && model.gameWon() == false) {
+    if(model.stageClear()) {
+      if(model.getLevel()+1 > model._levels.length) {
+        overlay.style.display = 'block';
+        overlay.innerHtml = "Congratulations! </br> You blasted all the enemies and saved the whole galaxy!";
+      } else {
         overlay.style.display = 'block';
       }
     }

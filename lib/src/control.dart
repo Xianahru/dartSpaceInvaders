@@ -44,13 +44,6 @@ class SpaceInvaderControl {
     
     view.next.onClick.listen((html.MouseEvent event) {
       model.setLevel(model.getLevel()+1);
-          /**
-           * Hier dann If-Abfrage
-           * Level sollte nur geladen werden im Model wenn das Level auch vorhanden ist. setLevel() ncihts verändert, wenn ein Level eingetragen wird,
-           * muss geprüft werden, ob das Level im View das selbe ist wie momentan im Model.
-           * Ggf muss dann im View noch was ergänzt werden um besagtes Level zu erhalten.
-           * Wenn kein Level geladen wird, weil das Spiel zuende ist, kann da Overlay ja anders befüllt werden anstatt dass es versteckt wird?
-           */
       if(model.gameWon() == false) {
         model.loadLevel(model.getLevel());
         view.overlay.style.display = 'none';        
