@@ -31,89 +31,6 @@
         <table id="board">
         </table>
       </div>
-      
-      <div id="overlay" style="display: none">
-        <h3>STAGE CLEARED!</h3>
-        <p id="next">Next Stage</p>
-      </div>
-      
-      <div id="instructions" style="display: none">
-        <h2>Instructions</h2>
-        <table id="list">
-          <tr>
-            <td id="img">
-              <table id="preview">
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="cannonPlayer"></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td class="player"></td>
-                  <td class="player"></td>
-                  <td class="player"></td>
-                  <td></td>
-                </tr>
-              </table>
-            </td>
-            <td id="meaning">
-              <p>Dies ist dein Schiff. Mit [<-] steuerst du dein Schiff nach links, mit [->] nach rechts. Mit [Space] kannst du schießen.</p>
-            </td>
-          </tr>
-          <tr>
-            <td id="img">
-              <table id="preview">
-                <tr>
-                  <td></td>
-                  <td class="part"></td>
-                  <td></td>
-                  <td class="part"></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td class="cannonEnemy"></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </table>
-            </td>
-            <td id="meaning">
-              <p>Dies sind deine Gegner. Zerstöre alle und du gewinnst. Lass dich weder von ihnen beschießen, noch lass sie auf deine Höhe kommen.</p>
-            </td>
-          </tr>
-          <tr>
-            <td id="img">
-              <table id="preview">
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-              </table>
-            </td>
-            <td id="meaning">
-              <p>Jeder Gegner hat eine bestimmte Anzahl von Hitpoints. Diese gilt es auf 0 zu bringen. Dein Schiff hat 5 Hitpoints also pass gut auf!</br>
-              Hast du alle Gegner erwischt, hast du den Level absolviert und kannst im Nächsten beweisen, was du drauf hast. Viel Glück!
-              </p>
-            </td>
-          </tr>
-        </table>
-        <p id="back">Back</p>
-      </div>
     
       <table id="status" style="display: none">
         <tr>
@@ -124,6 +41,49 @@
           <td><div id="score"></div></td>
         </tr>
       </table>
+    </div>
+
+    <div id="overlay" style="display: none">
+      <h3>STAGE CLEARED!</h3>
+      <p id="next">Next Stage</p>
+    </div>
+
+    <div id="instructions" style="display: none">
+      <h2>Instructions</h2>
+      <table id="ins">
+        <tr>
+          <td><img src="/src/img/player_i.png"></td>
+          <td>This is your ship. Don't let the enemies shoot you or take over your ship!</td>
+        </tr>
+        <tr>
+          <td><img src="/src/img/enemy_i.png"></td>
+          <td>This is an example of an enemyship. Shoot them all to get to higher level!</td>
+        </tr>
+        <tr>
+          <td><img src="/src/img/health_i.png"></td>
+          <td>These are your healthpoints! Don't let them fall to 0!</td>
+        </tr>
+        <tr>
+          <td><img src="/src/img/points_i.png"></td>
+          <td>This is your score. Shoot enemies to get points and a higher score!</td>
+        </tr>
+      </table>
+      <h2>Controls</h2>
+      <table id="ins">
+        <tr>
+          <td><img src="/src/img/left_c.png"></td>
+          <td>Press [left] to move your ship left.</td>
+        </tr>
+        <tr>
+          <td><img src="/src/img/right_c.png"></td>
+          <td>Press [rigth] to move your ship right.</td>
+        </tr>
+        <tr>
+          <td><img src="/src/img/space_c.png"></td>
+          <td>Press [space] to fire. You can shoot 5 projectiles at the same time.</td>
+        </tr>
+      </table>
+      <p id="back">Back</p>
     </div>
     
     <footer>

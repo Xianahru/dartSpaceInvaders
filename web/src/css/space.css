@@ -34,10 +34,13 @@ footer {
   background: rgba(255, 255, 255, .5);
 }
 
+/*-------------------------------------IDs--------------------------------------*/
+
 #standardContainer {
   width: 50%;
 }
 
+/*----------------Levelinformationsleiste------------------------*/
 #bars {
   border-spacing: 2px;
   margin: 10px auto;
@@ -76,6 +79,7 @@ footer {
   text-align: center;
 }
 
+/*----------------------Menü-----------------------*/
 #menu {
   margin: 150px auto;
   font-size: 16px;
@@ -94,19 +98,9 @@ footer {
   color: #aaa;
 }
 
+/*--------------------Spielfeld------------------*/
 #gamesection {
   margin: 10px auto;
-}
-
-#overlay {
-  z-index: 2;
-  position: fixed;
-  padding: 50px 0px; 
-  width: 100%;
-  top: 150px;
-  left: 0px;
-  right: 0px;
-  background: rgba(0, 153, 0, .3);
 }
 
 #board {
@@ -119,42 +113,40 @@ footer {
   height: 8px;
 }
 
+/*------------------------Overlay---------------------*/
+#overlay {
+  z-index: 2;
+  position: fixed;
+  padding: 50px 0px; 
+  width: 100%;
+  top: 150px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0, 153, 0, .3);
+}
+
+/*------------------------How-To-Play-------------------------*/
 #instructions {
-  margin: 50px auto;
+  margin: 0px auto;
 }
 
-#img {
-  width: 20%;
+#ins {
+  border-spacing: 2px;
+  margin: 10px auto;
+  width: 50%;
 }
 
-#meaning {
-  width: 80%;
-}
-
-#list {
-  border-spacing: 10px;
-}
-
-#preview {
-  border-spacing: 0px;
-}
-
-#preview td {
-  width: 12px;
-  height: 12px;
-}
-
-#meaning p {
-  font-size: 12px;
+#ins td {
+  width: 25%;
+  font-size: 14px;
   text-align: left;
 }
 
-#copyright {
-  font-size: 12px;
-  text-align: left;
-  color: #000;
+#ins img {
+  height: 40px;
 }
 
+/*-------------------Spielerstatusleiste--------------------*/
 #status {
   border-spacing: 2px;
   margin: 10px auto;
@@ -172,6 +164,12 @@ footer {
   min-width: 100%;
 }
 
+#healthpoints td {
+  font-size: 14px;
+  width: 16px;
+  height: 16px;
+}
+
 #score {
   padding: 2px;
   border: 2px solid white;
@@ -180,12 +178,15 @@ footer {
   min-width: 100%;
 }
 
-#healthpoints td {
-  font-size: 14px;
-  width: 16px;
-  height: 16px;
+#copyright {
+  font-size: 12px;
+  text-align: left;
+  color: #000;
 }
 
+/*------------------------------------Classes-------------------------------------*/
+
+/*-------------------Gesundheitszustände------------------------*/
 .green {
   background-image: url("/src/img/health_green.png");
   background-size: contain;
@@ -204,6 +205,7 @@ footer {
   background-repeat: no-repeat;
 }
 
+/*-----------------------Gegner-Texturen----------------------*/
 .part_75, .part_50, .part_25, .part_0 {
   background-image: url("/src/img/enemy.png");
   background-size: contain;
@@ -234,6 +236,7 @@ footer {
   -ms-filter: saturate(25%);
 }
 
+/*--------------------------Spieler-Texturen---------------------------*/
 .player {
   background-image: url("/src/img/player.png");
   background-size: contain;
@@ -246,6 +249,7 @@ footer {
   background-repeat: no-repeat;
 }
 
+/*--------------------------Waffen-Texturen----------------------------*/
 .cannonEnemy_75, .cannonEnemy_50, .cannonEnemy_25,.cannonEnemy_0 {
   background-image: url("/src/img/cannon_enemy.png");
   background-size: contain;
@@ -276,6 +280,7 @@ footer {
   -ms-filter: saturate(25%);
 }
 
+/*------------------------Projektil-Texturen--------------------------*/
 .enemyProjectile {
  background-image: url("/src/img/projectile_red.png");
  background-size: contain;
