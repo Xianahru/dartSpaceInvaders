@@ -118,7 +118,7 @@ class SpaceInvaderView {
     if(model.stageClear()) {
       if(model.getLevel()+1 > model._levels.length) {
         overlay.style.display = 'block';
-        overlay.innerHtml = "Congratulations! </br> You blasted all the enemies and saved the whole galaxy!";
+        overlay.innerHtml = "Congratulations! </br> You blasted all the enemies and saved the entire galaxy!";
       } else {
         overlay.style.display = 'block';
       }
@@ -154,7 +154,6 @@ class SpaceInvaderView {
               point.classes.add('cannonPlayer');
               break;
             case 'cannonEnemy':
-              point.classes.add('cannonEnemy');
               point.classes.add(checkStatus('cannonEnemy', tmp[1]));
               break;
             default:

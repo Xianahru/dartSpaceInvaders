@@ -9,6 +9,7 @@
 
 body {
   background-image: url("/src/img/background.jpg"); 
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   overflow: hidden; 
@@ -26,7 +27,7 @@ h2 {
 }
 
 footer {
-  padding: 10px;
+  padding: 0px 10px;
   width: 100%;
   position: absolute;
   bottom : 0;
@@ -38,6 +39,7 @@ footer {
 }
 
 #bars {
+  border-spacing: 2px;
   margin: 10px auto;
   width: 50%;
 }
@@ -51,6 +53,8 @@ footer {
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 #enemybar {
@@ -58,6 +62,8 @@ footer {
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 #notification {
@@ -150,6 +156,7 @@ footer {
 }
 
 #status {
+  border-spacing: 2px;
   margin: 10px auto;
   width: 50%;
 }
@@ -162,6 +169,7 @@ footer {
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
+  min-width: 100%;
 }
 
 #score {
@@ -169,6 +177,7 @@ footer {
   border: 2px solid white;
   border-radius: 5px;
   font-size: 16px;
+  min-width: 100%;
 }
 
 #healthpoints td {
@@ -179,19 +188,26 @@ footer {
 
 .green {
   background-image: url("/src/img/health_green.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .yellow {
   background-image: url("/src/img/health_yellow.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .red {
   background-image: url("/src/img/health_red.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .part_75, .part_50, .part_25, .part_0 {
   background-image: url("/src/img/enemy.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .part_50 {
@@ -221,16 +237,19 @@ footer {
 .player {
   background-image: url("/src/img/player.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .cannonPlayer {
   background-image: url("/src/img/cannon_player.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .cannonEnemy_75, .cannonEnemy_50, .cannonEnemy_25,.cannonEnemy_0 {
   background-image: url("/src/img/cannon_enemy.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .cannonEnemy_50 {
@@ -260,9 +279,11 @@ footer {
 .enemyProjectile {
  background-image: url("/src/img/projectile_red.png");
  background-size: contain;
+ background-repeat: no-repeat;
 }
 
 .playerProjectile {
   background-image: url("/src/img/projectile_blue.png");
   background-size: contain;
+  background-repeat: no-repeat;
 }
