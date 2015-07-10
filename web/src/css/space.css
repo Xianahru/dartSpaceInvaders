@@ -12,7 +12,7 @@ body {
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 h1 {
@@ -51,16 +51,7 @@ footer {
   width: 25%;
 }
 
-#levelbar {
-  padding: 2px;
-  border: 2px solid white;
-  border-radius: 5px;
-  font-size: 16px;
-  min-width: 100%;
-  max-width: 100%;
-}
-
-#enemybar {
+#levelbar, #enemybar {
   padding: 2px;
   border: 2px solid white;
   border-radius: 5px;
