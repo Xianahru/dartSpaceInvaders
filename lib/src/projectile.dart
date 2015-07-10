@@ -38,25 +38,30 @@ class Projectile {
    * Wenn ja, werden die [_hitpoints] von diesem [Ship] um 1 reduziert und das [Projectile] entfernt.
    */
   detectCollision() {
-    List<EnemyShip> enemies = this._model.enemies.toList();
-    for (EnemyShip enemy in enemies) {
-      for (Map<String, int> part in enemy.parts) {
-        if ((part['row'] == this._coordinate['row']) &&
-            (part['col'] == this._coordinate['col'])) {
-          print('Hit the enemy! Reducing enemy HP by 1');
-          enemy.reduceHitpointsBy(1);
-          _model.removeProjectile(this);
-          print('Projectile deleted.');
+    if(this._model.playerProjectiles.contains(this)) {
+      List<EnemyShip> enemies = this._model.enemies.toList();
+      for (EnemyShip enemy in enemies) {
+        for (Map<String, int> part in enemy.parts) {
+          if ((part['row'] == this._coordinate['row']) &&
+              (part['col'] == this._coordinate['col'])) {
+            print('Hit the enemy! Reducing enemy HP by 1');
+            enemy.reduceHitpointsBy(1);
+            _model.removeProjectile(this);
+            print('Projectile deleted.');
+          }
         }
       }
     }
-    PlayerShip player = this._model._player;
-    for (Map<String, int> coor in player._parts) {
-      if ((coor['row'] == this._coordinate['row']) &&
-          (coor['col'] == this._coordinate['col'])) {
-        print('Player got hit! Reducing player HP by 1');
-        player.reduceHitpointsBy(1);
-        _model.removeProjectile(this);
+    else { 
+      PlayerShip player = this._model._player;
+      for (Map<String, int> coor in player._parts) {
+        if((coor['row'] == this._coordinate['row']) &&
+            (coor['col'] == this._coordinate['col'])) {
+          print('Player got hit! Reducing player HP by 1');
+          player.reduceHitpointsBy(1);
+          _model.removeProjectile(this);
+          print('Projectile deleted.');
+        }
       }
     }
     
